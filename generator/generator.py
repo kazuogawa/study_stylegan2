@@ -1,6 +1,5 @@
 from typing import List, Tuple, Optional
 
-import torch.nn.functional as F
 import torch.utils.data
 from torch import nn
 
