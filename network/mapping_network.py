@@ -1,14 +1,14 @@
-import math
-from typing import Tuple, Optional, List
-
-import numpy as np
-import torch
 import torch.nn.functional as F
 import torch.utils.data
 from torch import nn
 
 
 class MappingNetwork(nn.Module):
+    """
+    8つの線形層を持つMLP
+    潜在ベクトルz∈Wを中間潜在空間w∈Wにマッピングする
+    W空間は、変動要因がより線形になる画像空間から切り離されることになる
+    """
 
     def __init__(self, features: int, n_layers: int):
         """
