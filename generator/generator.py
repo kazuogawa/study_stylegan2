@@ -3,6 +3,8 @@ from typing import List, Tuple, Optional
 import torch.utils.data
 from torch import nn
 
+from generator.generator_block import GeneratorBlock
+
 
 class Generator(nn.Module):
     def __init__(self, log_resolution: int, d_latent: int, n_features: int = 32, max_features: int = 512):
@@ -25,7 +27,6 @@ class Generator(nn.Module):
         # RGBを取得するためのレイヤー
         # TODO: ToRGBは後で追加
         self.to_rgb = ToRGB(d_latent, features[0])
-        # TODO: GeneratorBlockは後で追加
         self.blocks = nn.ModuleList(
             [GeneratorBlock(d_latent, features[i - 1], features[i]) for i in range(1, self.n_blocks)]
         )
