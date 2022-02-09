@@ -5,7 +5,7 @@ from torch import nn
 
 class MappingNetwork(nn.Module):
     """
-    8つの線形層を持つMLP
+    8つの線形層を持つNLP
     潜在ベクトルz∈Wを中間潜在空間w∈Wにマッピングする
     W空間は、変動要因がより線形になる画像空間から切り離されることになる
     """

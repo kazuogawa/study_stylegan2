@@ -2,6 +2,8 @@ import torch.nn.functional as F
 import torch.utils.data
 from torch import nn
 
+from parameter.equalized_weight import EqualizedWeight
+
 
 class Conv2dWeightModulate(nn.Module):
     """
@@ -22,7 +24,6 @@ class Conv2dWeightModulate(nn.Module):
         self.demodulate = demodulate
         self.eps = eps
         self.padding = (kernel_size - 1) // 2
-        # TODO: 後で実装
         self.weight = EqualizedWeight([out_features, in_features, kernel_size, kernel_size])
 
     def forward(self, x: torch.Tensor, s: torch.Tensor):

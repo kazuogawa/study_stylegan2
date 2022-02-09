@@ -5,6 +5,7 @@ from torch import nn
 
 from generator.ToRGB import ToRGB
 from generator.generator_block import GeneratorBlock
+from generator.style_block import StyleBlock
 
 
 class Generator(nn.Module):
@@ -23,7 +24,6 @@ class Generator(nn.Module):
         # torch.Size([1, 512, 4, 4])のランダム定数
         self.initial_constant = nn.Parameter(torch.randn((1, features[0], 4, 4)))
         # 4×4解像度の最初のスタイルブロック
-        # TODO: StyleBlockは後で追加
         self.style_block = StyleBlock(d_latent, features[0], features[0])
         self.to_rgb = ToRGB(d_latent, features[0])
         self.blocks = nn.ModuleList(

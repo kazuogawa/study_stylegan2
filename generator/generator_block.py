@@ -4,6 +4,7 @@ import torch.utils.data
 from torch import nn
 
 from generator.ToRGB import ToRGB
+from generator.style_block import StyleBlock
 
 
 class GeneratorBlock(nn.Module):
@@ -19,7 +20,6 @@ class GeneratorBlock(nn.Module):
         """
         super().__init__()
         # 最初のスタイルブロックは、feature map sizeをout_featuresに変更します。
-        # TODO: StyleBlockは後で実装
         self.style_block1 = StyleBlock(d_latent, in_features, out_features)
         self.style_block2 = StyleBlock(d_latent, out_features, out_features)
         self.to_rgb = ToRGB(d_latent, out_features)
