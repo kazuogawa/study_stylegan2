@@ -3,6 +3,7 @@ from typing import List, Tuple, Optional
 import torch.utils.data
 from torch import nn
 
+from generator.ToRGB import ToRGB
 from generator.generator_block import GeneratorBlock
 
 
@@ -24,8 +25,6 @@ class Generator(nn.Module):
         # 4×4解像度の最初のスタイルブロック
         # TODO: StyleBlockは後で追加
         self.style_block = StyleBlock(d_latent, features[0], features[0])
-        # RGBを取得するためのレイヤー
-        # TODO: ToRGBは後で追加
         self.to_rgb = ToRGB(d_latent, features[0])
         self.blocks = nn.ModuleList(
             [GeneratorBlock(d_latent, features[i - 1], features[i]) for i in range(1, self.n_blocks)]

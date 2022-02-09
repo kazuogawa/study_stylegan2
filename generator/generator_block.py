@@ -3,6 +3,8 @@ from typing import List, Tuple, Optional
 import torch.utils.data
 from torch import nn
 
+from generator.ToRGB import ToRGB
+
 
 class GeneratorBlock(nn.Module):
     """
