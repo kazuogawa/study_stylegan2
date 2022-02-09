@@ -3,6 +3,9 @@ from torch import nn
 
 
 class ToRGB(nn.Module):
+    """
+    1×1畳み込みにより、特徴マップからRGB画像を生成
+    """
 
     def __init__(self, d_latent: int, features: int):
         super().__init__()
