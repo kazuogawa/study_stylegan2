@@ -1,6 +1,8 @@
 import torch.utils.data
 from torch import nn
 
+from generator.conv_2d_weight_modulate import Conv2dWeightModulate
+
 
 class ToRGB(nn.Module):
     """
@@ -12,7 +14,6 @@ class ToRGB(nn.Module):
         self.features = features
         # TODO: EqualizedLinearは後で実装
         self.to_style = EqualizedLinear(d_latent, features, bias=1.0)
-        # TODO: Conv2dWeightModuleは後で実装
         self.conv = Conv2dWeightModulate(features, 3, kernel_size=1, demodulate=False)
         # なぜ3なのか
         self.bias = nn.Parameter(torch.zeros(3))
