@@ -2,6 +2,8 @@ import torch.nn.functional as F
 import torch.utils.data
 from torch import nn
 
+from layer.equalized_linear import EqualizedLinear
+
 
 class MappingNetwork(nn.Module):
     """
@@ -18,7 +20,6 @@ class MappingNetwork(nn.Module):
         super().__init__()
         layers = []
         for i in range(n_layers):
-            # TODO: EqualizedLinear後で説明がある
             layers.append(EqualizedLinear(features, features))
             # LeakyReLU:
             # 入力値が0より下の場合には入力値をnegative_slope値分だけ小さくする

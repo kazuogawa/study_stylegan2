@@ -4,12 +4,12 @@ import torch.utils.data
 from torch import nn
 
 from generator.conv_2d_weight_modulate import Conv2dWeightModulate
+from layer.equalized_linear import EqualizedLinear
 
 
 class StyleBlock(nn.Module):
     def __init__(self, d_latent: int, in_features: int, out_features: int):
         super().__init__()
-        # TODO: EqualizedLinearは後で作成
         self.to_style = EqualizedLinear(d_latent, in_features, bias=1.0)
         self.conv = Conv2dWeightModulate(in_features, out_features, kernel_size=3)
         self.scale_noise = nn.Parameter(torch.zeros(1))
