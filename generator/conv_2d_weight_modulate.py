@@ -48,5 +48,5 @@ class Conv2dWeightModulate(nn.Module):
         weights = weights.reshape(batch_size * self.out_features, *ws)
         # グループ化されたコンボリューションを使用して、サンプル単位のカーネルでコンボリューションを効率的に計算する。
         # つまり、バッチ内の各サンプルに対して異なるカーネル（重み）を持つ。
-        x = F.conv2d(x, weights, padding=self.padding, groups=b)
+        x = F.conv2d(x, weights, padding=self.padding, groups=batch_size)
         return x.reshape(-1, self.out_features, height, width)
