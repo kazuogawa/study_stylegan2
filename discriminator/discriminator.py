@@ -6,6 +6,9 @@ from layer.equalized_linear import EqualizedLinear
 
 
 class Discriminator(nn.Module):
+    """
+    識別器ブロックは、2つの3×3畳み込みと残差接続で構成
+    """
     def __init__(self, log_resolution: int, n_features: int, max_features: int = 512):
         """
         :param log_resolution: log2の画像解像度
